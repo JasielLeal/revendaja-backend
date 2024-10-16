@@ -3,28 +3,40 @@ import { Account } from "./Account";
 import { Session } from "./Session";
 
 export class User {
-  id: string;
-  name?: string;
+  id?: string;
+  name: string;
+  secondName: string;
+  tokenVerify?: string;
   email: string;
   emailVerified?: Date;
   image?: string;
-  password?: string; // Armazenar a senha criptografada
-  role: Role;
-  stores: Store[];
-  accounts: Account[];
-  sessions: Session[];
+  password: string;
+  paymentStatus?: string;
+  lastPayment?: Date; // Armazenar a senha criptografada
+  role?: string;
+  stores?: Store[];
+  accounts?: Account[];
+  sessions?: Session[];
 
   constructor(
     id: string,
     email: string,
-    role: Role,
+    role: string,
     name?: string,
+    secondName?: string,
+    tokenVerify?: string,
     emailVerified?: Date,
     image?: string,
-    password?: string
+    password?: string,
+    paymentStatus?: string,
+    lastPayment?: Date
   ) {
     this.id = id;
+    this.paymentStatus = paymentStatus;
+    this.lastPayment = lastPayment;
     this.email = email;
+    this.secondName = secondName;
+    this.tokenVerify = tokenVerify;
     this.role = role;
     this.name = name;
     this.emailVerified = emailVerified;
@@ -34,9 +46,4 @@ export class User {
     this.accounts = [];
     this.sessions = [];
   }
-}
-
-export enum Role {
-  ADMIN = "ADMIN",
-  USER = "USER",
 }

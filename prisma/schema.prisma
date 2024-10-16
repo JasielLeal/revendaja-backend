@@ -15,12 +15,16 @@ datasource db {
 
 model User {
   id            String    @id @default(uuid())
-  name          String?
+  name          String
+  secondName    String
+  tokenVerify   String?
   email         String    @unique
   emailVerified DateTime?
   image         String?
   password      String? // Armazenar a senha criptografada
-  role          Role      @default(USER)
+  role          String    @default("User")
+  paymentStatus String    @default("Active") // "ACTIVE", "EXPIRED", "BLOCKED"
+  lastPayment   DateTime? // Data do último pagamento
   stores        Store[] // Relação com lojas
   accounts      Account[]
   sessions      Session[]
@@ -70,9 +74,4 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-}
-
-enum Role {
-  ADMIN
-  USER
 }
