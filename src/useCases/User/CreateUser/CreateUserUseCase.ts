@@ -34,9 +34,6 @@ export class CreateUserUseCase {
       }
     );
 
-    // Atualize o novo usuário com o tokenVerify
-    newUser.tokenVerify = tokenVerify; // Certifique-se de que tokenVerify seja uma propriedade válida no seu modelo de usuário
-
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {

@@ -26,4 +26,17 @@ export class PrismaUserRepository implements UserRepository {
 
     return user;
   }
+
+  async updateEmailVerified(email: string, emailVerified: Date) {
+    const user = await prisma.user.update({
+      where: {
+        email, // Identificando o usuário pelo e-mail
+      },
+      data: {
+        emailVerified, // Atualizando o campo emailVerified
+      },
+    });
+
+    return user; // Retorna o usuário atualizado
+  }
 }

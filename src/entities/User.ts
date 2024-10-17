@@ -6,7 +6,6 @@ export class User {
   id?: string;
   name: string;
   secondName: string;
-  tokenVerify?: string;
   email: string;
   emailVerified?: Date;
   image?: string;
@@ -24,7 +23,6 @@ export class User {
     role: string,
     name?: string,
     secondName?: string,
-    tokenVerify?: string,
     emailVerified?: Date,
     image?: string,
     password?: string,
@@ -36,7 +34,6 @@ export class User {
     this.lastPayment = lastPayment;
     this.email = email;
     this.secondName = secondName;
-    this.tokenVerify = tokenVerify;
     this.role = role;
     this.name = name;
     this.emailVerified = emailVerified;
