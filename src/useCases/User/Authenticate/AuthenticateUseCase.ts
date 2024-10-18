@@ -6,13 +6,15 @@ import { UserRepository } from "@/repositories/user/UserRepository";
 
 interface AuthenticateResponse {
   token: string;
-  id: string;
-  name: string;
-  secondName: string;
-  email: string;
-  image: string;
-  paymentStatus: string;
-  role: string;
+  user: {
+    id: string;
+    name: string;
+    secondName: string;
+    email: string;
+    image: string;
+    paymentStatus: string;
+    role: string;
+  };
   // adicione outros campos necessários
 }
 
@@ -45,13 +47,15 @@ export class AuthenticateUseCase {
 
     return {
       token,
-      id: user.id,
-      name: user.name,
-      secondName: user.secondName,
-      email: user.email,
-      image: user.image,
-      paymentStatus: user.paymentStatus,
-      role: user.role,
+      user: {
+        id: user.id,
+        name: user.name,
+        secondName: user.secondName,
+        email: user.email,
+        image: user.image,
+        paymentStatus: user.paymentStatus,
+        role: user.role,
+      },
       // inclua outros campos não sensíveis conforme necessário
     };
   }

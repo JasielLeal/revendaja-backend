@@ -1,30 +1,35 @@
 import { Stock } from "./Stock";
-import { User } from "./User";
 
-export class Store {
+export class Product {
   id: string;
   name: string;
-  userId: string;
+  oldPrice: string;
+  price: string;
+  description: string;
+  company: string;
   createdAt: Date;
   updatedAt: Date;
-  user: User;
   stock: Stock[];
 
   constructor(
     id: string,
     name: string,
-    userId: string,
+    oldPrice: string,
+    price: string,
+    description: string,
+    company: string,
     createdAt: Date,
     updatedAt: Date,
-    user: User,
     stock: Stock[]
   ) {
     this.id = id;
     this.name = name;
-    this.userId = userId;
+    this.oldPrice = oldPrice;
+    this.price = price;
+    this.description = description;
+    this.company = company;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
-    this.user = user;
     this.stock = stock;
   }
 }
