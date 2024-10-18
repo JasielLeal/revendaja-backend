@@ -39,4 +39,14 @@ export class PrismaUserRepository implements UserRepository {
 
     return user; // Retorna o usuário atualizado
   }
+
+  async findById(userId: string): Promise<User | null> {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    return user;
+  }
 }

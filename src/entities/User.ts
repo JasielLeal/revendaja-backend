@@ -1,6 +1,4 @@
 import { Store } from "./Store";
-import { Account } from "./Account";
-import { Session } from "./Session";
 
 export class User {
   id?: string;
@@ -14,8 +12,6 @@ export class User {
   lastPayment?: Date; // Armazenar a senha criptografada
   role?: string;
   stores?: Store[];
-  accounts?: Account[];
-  sessions?: Session[];
 
   constructor(
     id: string,
@@ -40,7 +36,5 @@ export class User {
     this.image = image;
     this.password = password;
     this.stores = [];
-    this.accounts = [];
-    this.sessions = [];
   }
 }
