@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -30,32 +24,37 @@ model User {
 model Store {
   id          String   @id @default(uuid())
   name        String   @unique
-  status      String   @default("Active")
+  status      String   @default("Ativa")
   description String
   userId      String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Stock       Stock[]
+  stock       Stock[] // Relação com o estoque da loja
 }
 
 model Stock {
-  id        String  @id @default(uuid())
-  quantity  Int     @default(0)
-  storeId   String
-  store     Store   @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  productId String
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  id          String   @id @default(uuid())
+  quantity    Int      @default(0) // Quantidade do produto no estoque da loja
+  customPrice Decimal? // Preço personalizado definido pela loja (opcional)
+  oldPrice    Decimal? // Preço antigo para histórico e comparações
+  status      String   @default("Disponivel") // Status do produto (Ex: Disponível, Esgotado)
+  storeId     String
+  store       Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  updatedAt   DateTime @updatedAt // Data de atualização do estoque
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String
-  oldPrice    String
-  price       String
-  description String
-  company     String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  Stock       Stock[]
+  id             String   @id @default(uuid())
+  name           String
+  normalPrice    Decimal // Preço base global
+  suggestedPrice Decimal // Preço sugerido pela empresa
+  description    String
+  brand          String // Marca do produto
+  company        String // Nome da empresa fornecedora
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  stock          Stock[] // Relação com estoques
 }

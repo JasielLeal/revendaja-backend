@@ -3,8 +3,9 @@ import { User } from "./User";
 
 export class Store {
   id?: string;
-  name?: string;
+  name: string;
   description?: string;
+  status: string;
   userId?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -12,9 +13,10 @@ export class Store {
   stock?: Stock[];
 
   constructor(
-    id?: string,
-    name?: string,
+    id: string,
+    name: string,
     userId?: string,
+    status: string = "Ativa",
     description?: string,
     createdAt?: Date,
     updatedAt?: Date,
@@ -22,8 +24,9 @@ export class Store {
     stock?: Stock[]
   ) {
     this.id = id;
-    this.description = description;
     this.name = name;
+    this.status = status;
+    this.description = description;
     this.userId = userId;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;

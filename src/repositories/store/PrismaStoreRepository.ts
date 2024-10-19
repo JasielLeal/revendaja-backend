@@ -16,16 +16,7 @@ export class PrismaStoreRepository implements StoreRepository {
       },
     });
 
-    return new Store(
-      storeData.id,
-      storeData.name,
-      storeData.description,
-      storeData.userId,
-      storeData.createdAt,
-      storeData.updatedAt,
-      undefined, // user pode ser preenchido se necessário
-      []
-    );
+    return storeData;
   }
 
   async findByName(name: string): Promise<Store | null> {

@@ -4,5 +4,5 @@ export interface UserRepository {
   create(data: User): Promise<User>;
   findByEmail(email: string): Promise<User | null>;
   findById(userId: string): Promise<User | null>;
-  updateEmailVerified(email: string, emailVerified: Date);
+  updateEmailVerified(email: string, emailVerified: Date): Promise<User | null>;
 }
