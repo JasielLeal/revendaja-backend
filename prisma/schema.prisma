@@ -49,8 +49,8 @@ model Stock {
 model Product {
   id             String   @id @default(uuid())
   name           String
-  normalPrice    Decimal // Preço base global
-  suggestedPrice Decimal // Preço sugerido pela empresa
+  normalPrice    String // Preço base global
+  suggestedPrice String // Preço sugerido pela empresa
   description    String
   brand          String // Marca do produto
   company        String // Nome da empresa fornecedora

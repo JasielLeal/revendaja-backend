@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Product" ALTER COLUMN "normalPrice" SET DATA TYPE TEXT,
+ALTER COLUMN "suggestedPrice" SET DATA TYPE TEXT;

@@ -3,8 +3,8 @@ import { Stock } from "./Stock";
 export class Product {
   id?: string;
   name: string;
-  normalPrice: number;
-  suggestedPrice: number;
+  normalPrice: string;
+  suggestedPrice: string;
   description: string;
   brand?: string;
   company?: string;
@@ -15,8 +15,8 @@ export class Product {
   constructor(
     id: string,
     name: string,
-    normalPrice: number,
-    suggestedPrice: number,
+    normalPrice: string,
+    suggestedPrice: string,
     description: string,
     brand: string,
     company: string,
