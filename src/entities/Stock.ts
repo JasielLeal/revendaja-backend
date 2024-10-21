@@ -4,8 +4,9 @@ import { Product } from "./Product";
 export class Stock {
   id?: string;
   quantity: number;
-  customPrice?: number;
-  oldPrice?: number;
+  customPrice?: string;
+  normalPrice?: string;
+  suggestedPrice?: string;
   status: string;
   storeId?: string;
   store?: Store;
@@ -16,8 +17,9 @@ export class Stock {
   constructor(
     id?: string,
     quantity: number = 0,
-    customPrice?: number,
-    oldPrice?: number,
+    customPrice?: string,
+    normalPrice?: string,
+    suggestedPrice?: string,
     status: string = "Disponivel",
     storeId?: string,
     store?: Store,
@@ -28,7 +30,8 @@ export class Stock {
     this.id = id;
     this.quantity = quantity;
     this.customPrice = customPrice;
-    this.oldPrice = oldPrice;
+    this.normalPrice = normalPrice;
+    this.suggestedPrice = suggestedPrice
     this.status = status;
     this.storeId = storeId;
     this.store = store;

@@ -28,4 +28,14 @@ export class PrismaStoreRepository implements StoreRepository {
 
     return store;
   }
+
+  async findById(id: string): Promise<Store | null> {
+    const store = await prisma.store.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return store;
+  }
 }

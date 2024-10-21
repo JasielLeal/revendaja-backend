@@ -34,16 +34,17 @@ model Store {
 }
 
 model Stock {
-  id          String   @id @default(uuid())
-  quantity    Int      @default(0) // Quantidade do produto no estoque da loja
-  customPrice Decimal? // Preço personalizado definido pela loja (opcional)
-  oldPrice    Decimal? // Preço antigo para histórico e comparações
-  status      String   @default("Disponivel") // Status do produto (Ex: Disponível, Esgotado)
-  storeId     String
-  store       Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  productId   String
-  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  updatedAt   DateTime @updatedAt // Data de atualização do estoque
+  id             String   @id @default(uuid())
+  quantity       Int      @default(0) // Quantidade do produto no estoque da loja
+  customPrice    String? // Preço personalizado definido pela loja (opcional)
+  suggestedPrice String? // Preço sugerido
+  normalPrice    String? // Preço antigo para histórico e comparações
+  status         String   @default("Disponivel") // Status do produto (Ex: Disponível, Esgotado)
+  storeId        String
+  store          Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  updatedAt      DateTime @updatedAt // Data de atualização do estoque
 }
 
 model Product {
