@@ -1,3 +1,5 @@
+import { Stock } from "@/entities/Stock";
+
 export interface StockRepository {
   addProductToStoreStock(
     storeId: string,
@@ -5,5 +7,8 @@ export interface StockRepository {
     customPrice?: string,
     normalPrice?: string,
     suggestedPrice?: string
-  );
+  ): Promise<Stock | null>;
+
+  findStoreItems(storeId: string): Promise<Stock[] | null>;
+  findProductInStock(storeId: string, productId: string)
 }

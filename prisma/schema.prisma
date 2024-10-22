@@ -45,6 +45,8 @@ model Stock {
   productId      String
   product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   updatedAt      DateTime @updatedAt // Data de atualização do estoque
+
+  @@unique([storeId, productId])
 }
 
 model Product {

@@ -14,6 +14,7 @@ interface AuthenticateResponse {
     image: string;
     paymentStatus: string;
     role: string;
+    userHasStore: boolean;
   };
   // adicione outros campos necessários
 }
@@ -45,6 +46,8 @@ export class AuthenticateUseCase {
       expiresIn: "8h",
     });
 
+    const userHasStore = await this.userRepository.userHasStore(user.id);
+
     return {
       token,
       user: {
@@ -55,6 +58,7 @@ export class AuthenticateUseCase {
         image: user.image,
         paymentStatus: user.paymentStatus,
         role: user.role,
+        userHasStore,
       },
       // inclua outros campos não sensíveis conforme necessário
     };

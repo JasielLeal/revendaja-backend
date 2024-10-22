@@ -30,6 +30,15 @@ export class AddProductToStoreStockUseCase {
       throw new AppError("Produto não cadastrado", 400);
     }
 
+    const productExistInStock = await this.stockRepository.findProductInStock(
+      storeId,
+      productId
+    );
+
+    if (productExistInStock) {
+      throw new AppError("Produto já adicionado ao estoque", 400);
+    }
+
     const finalPrice = customPrice ? customPrice : productExist.suggestedPrice;
 
     const newSuggestedPrice = suggestedPrice

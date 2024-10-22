@@ -49,4 +49,14 @@ export class PrismaUserRepository implements UserRepository {
 
     return user;
   }
+
+  async userHasStore(userId: string): Promise<boolean> {
+    const userWithStores = await prisma.user.findUnique({
+      where: { id: userId },
+      include: { stores: true }, // Incluir as lojas relacionadas ao usuário
+    });
+
+    // Verifica se a lista de lojas não está vazia
+    return userWithStores?.stores.length > 0;
+  }
 }
