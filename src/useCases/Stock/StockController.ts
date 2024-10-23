@@ -7,6 +7,7 @@ import { PrismaStoreRepository } from "@/repositories/store/PrismaStoreRepositor
 import { PrismaProductsRepository } from "@/repositories/products/PrismaProductsRepository";
 import { FindStoreItemsDTO } from "./findStoreItems/FindStoreItemsDTO";
 import { FindStoreItemsUseCase } from "./findStoreItems/FindStoreItemsUseCase";
+import { PrismaUserRepository } from "@/repositories/user/PrismaUserRepository";
 
 export class StockController {
   async AddProductToStoreStock(request: Request, response: Response) {
@@ -48,14 +49,21 @@ export class StockController {
 
   async FindStoreItems(request: Request, response: Response) {
     try {
-      const { storeId }: FindStoreItemsDTO = request.body;
+      const { id } = request.user;
+
+      const userId = id;
 
       const prismaStockRepository = new PrismaStockRepository();
+      const prismaUserRepository = new PrismaUserRepository();
+      const prismaStoreRepository = new PrismaStoreRepository();
+
       const findStoreItemsUseCase = new FindStoreItemsUseCase(
-        prismaStockRepository
+        prismaStockRepository,
+        prismaStoreRepository,
+        prismaUserRepository
       );
 
-      const stock = await findStoreItemsUseCase.execute({ storeId });
+      const stock = await findStoreItemsUseCase.execute({ userId });
       return response.status(200).send(stock);
     } catch (error) {
       if (error instanceof AppError) {

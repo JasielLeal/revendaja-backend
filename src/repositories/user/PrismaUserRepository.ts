@@ -59,4 +59,6 @@ export class PrismaUserRepository implements UserRepository {
     // Verifica se a lista de lojas não está vazia
     return userWithStores?.stores.length > 0;
   }
+
+  
 }

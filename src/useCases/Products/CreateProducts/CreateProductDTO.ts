@@ -4,6 +4,7 @@ export interface CreateProductsDTO {
   normalPrice: string;
   suggestedPrice: string;
   description: string;
+  imgUrl?: string;
   brand?: string;
   company?: string;
 }

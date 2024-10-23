@@ -14,6 +14,7 @@ export class ProductsController {
         suggestedPrice,
         brand,
         company,
+        imgUrl,
       }: CreateProductsDTO = request.body;
 
       const prismaProductsRepository = new PrismaProductsRepository();
@@ -28,6 +29,7 @@ export class ProductsController {
         suggestedPrice,
         brand,
         company,
+        imgUrl,
       });
 
       return response.status(200).send(newProduct);

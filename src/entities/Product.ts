@@ -6,6 +6,7 @@ export class Product {
   normalPrice: string;
   suggestedPrice: string;
   description: string;
+  imgUrl?: string;
   brand?: string;
   company?: string;
   createdAt?: Date;
@@ -18,8 +19,9 @@ export class Product {
     normalPrice: string,
     suggestedPrice: string,
     description: string,
-    brand: string,
-    company: string,
+    imgUrl?: string,
+    brand?: string,
+    company?: string,
     createdAt?: Date,
     updatedAt?: Date,
     stock?: Stock[]
@@ -29,6 +31,7 @@ export class Product {
     this.normalPrice = normalPrice;
     this.suggestedPrice = suggestedPrice;
     this.description = description;
+    this.imgUrl = imgUrl;
     this.brand = brand;
     this.company = company;
     this.createdAt = createdAt;

@@ -55,6 +55,7 @@ model Product {
   normalPrice    String // Preço base global
   suggestedPrice String // Preço sugerido pela empresa
   description    String
+  imgUrl         String
   brand          String // Marca do produto
   company        String // Nome da empresa fornecedora
   createdAt      DateTime @default(now())

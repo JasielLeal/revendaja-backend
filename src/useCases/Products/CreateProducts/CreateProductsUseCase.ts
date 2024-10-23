@@ -11,6 +11,7 @@ export class CreateProductsUseCase {
     suggestedPrice,
     brand,
     company,
+    imgUrl
   }: CreateProductsDTO) {
     const newProduct = await this.productsRepository.create({
       description,
@@ -19,6 +20,7 @@ export class CreateProductsUseCase {
       suggestedPrice,
       brand,
       company,
+      imgUrl
     });
 
     return newProduct;

@@ -1,3 +1,3 @@
 export interface FindStoreItemsDTO {
-  storeId: string;
+  userId: string;
 }

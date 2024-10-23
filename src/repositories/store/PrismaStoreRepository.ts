@@ -38,4 +38,12 @@ export class PrismaStoreRepository implements StoreRepository {
 
     return store;
   }
+
+  async findStoreByUserId(userId: string) {
+    const store = await prisma.store.findFirst({
+      where: { userId: userId },
+    });
+
+    return store;
+  }
 }
