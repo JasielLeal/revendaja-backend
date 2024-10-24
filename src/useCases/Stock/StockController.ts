@@ -52,6 +52,7 @@ export class StockController {
       const { id } = request.user;
 
       const userId = id;
+      const { page = 1, pageSize = 5 } = request.query;
 
       const prismaStockRepository = new PrismaStockRepository();
       const prismaUserRepository = new PrismaUserRepository();
@@ -63,7 +64,12 @@ export class StockController {
         prismaUserRepository
       );
 
-      const stock = await findStoreItemsUseCase.execute({ userId });
+      const stock = await findStoreItemsUseCase.execute({
+        userId,
+        page: Number(page),
+        pageSize: Number(pageSize),
+      });
+      
       return response.status(200).send(stock);
     } catch (error) {
       if (error instanceof AppError) {

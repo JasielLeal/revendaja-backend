@@ -9,6 +9,15 @@ export interface StockRepository {
     suggestedPrice?: string
   ): Promise<Stock | null>;
 
-  findStoreItems(storeId: string): Promise<Stock[] | null>;
-  findProductInStock(storeId: string, productId: string)
+  findStoreItems(
+    storeId: string,
+    page: number,
+    pageSize: number
+  ): Promise<{
+    items: Stock[] | null;
+    totalItems: number;
+    totalPages: number;
+    currentPage: number;
+  }>;
+  findProductInStock(storeId: string, productId: string);
 }

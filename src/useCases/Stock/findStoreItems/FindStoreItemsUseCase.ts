@@ -11,7 +11,7 @@ export class FindStoreItemsUseCase {
     private userRepository: UserRepository
   ) {}
 
-  async execute({ userId }: FindStoreItemsDTO) {
+  async execute({ userId, page = 1, pageSize = 5 }: FindStoreItemsDTO) {
     const userHasStore = await this.userRepository.userHasStore(userId);
 
     if (!userHasStore) {
@@ -24,9 +24,15 @@ export class FindStoreItemsUseCase {
       throw new AppError("Nenhuma loja associada a esse usuário");
     }
 
-    // Usa o storeId para buscar os itens de estoque
-    const storeItems = await this.stockRepository.findStoreItems(store.id);
+    // Usa o storeId para buscar os itens de estoque com paginação
+    const { items, totalItems, totalPages, currentPage } =
+      await this.stockRepository.findStoreItems(store.id, page, pageSize);
 
-    return storeItems;
+    return {
+      totalItems,
+      totalPages,
+      currentPage, // Adiciona a página atual no retorno
+      items,
+    };
   }
 }
